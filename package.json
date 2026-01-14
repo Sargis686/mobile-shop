@@ -1,6 +1,8 @@
 {
-  "name": "next-commerce-community",
+  "name": "mobilex",
   "version": "0.1.0",
+  "description": "Modern mobile e-commerce built with Next.js",
+  "author": "Sargis Adamyan",
   "private": true,
   "scripts": {
     "dev": "next dev",

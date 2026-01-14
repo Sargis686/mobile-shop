@@ -1,25 +1,21 @@
-# Free eCommerce Template for Next.js - NextMerce
+MobileX — Mobile eCommerce Platform (Next.js)
+MobileX is a modern eCommerce web application for selling mobile phones and accessories, built with 
 
-The free Next.js eCommerce template is a lite version of the NextMerce Next.js eCommerce boilerplate, designed to streamline the launch and management of your online store.
-
-![NextMerce](https://github.com/user-attachments/assets/57155689-a756-4222-8af7-134e556acae2)
-
-
-While NextMerce Pro features advanced functionalities, seamless integration, and customizable options, providing all the essential tools needed to build and expand your business, the lite version offers a basic Next.js template specifically crafted for eCommerce websites. Both versions ensure superior performance and flexibility, all powered by Next.js.
-
-### NextMerce Free VS NextMerce Pro
-
-| ✨ Features                         | 🎁 NextMerce Free                 | 🔥 NextMerce Pro                        |
-|----------------------------------|--------------------------------|--------------------------------------|
-| Next.js Pages                    | Static                         | Dynamic Boilerplate Template         |
-| Components                       | Limited                        | All According to Demo                |
-| eCommerce Functionality          | Included                       | Included                             |
-| Integrations (DB, Auth, etc.)    | Not Included                   | Included                             |
-| Community Support                | Included                       | Included                             |
-| Premium Email Support            | Not Included                   | Included                             |
-| Lifetime Free Updates            | Included                       | Included                             |
-
-
-#### [🚀 Live Demo](https://demo.nextmerce.com/)
-
-#### [🌐 Visit Website](https://nextmerce.com/)
+Next.js and React.
+🚧 Status: Work in Progress
+Features
+Modern responsive UI
+Product listing & product details
+Shopping cart
+Authentication-ready architecture
+Scalable project structure
+Tech Stack
+Next.js
+React
+Tailwind CSS
+Redux Toolkit
+Sanity CMS
+Goal
+Build a scalable, production-ready mobile commerce platform that can be extended with payments, admin dashboard, and multi-store support.
+Live Demo
+Coming soon
