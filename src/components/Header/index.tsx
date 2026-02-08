@@ -9,16 +9,20 @@ import { useSelector } from "react-redux";
 import { selectTotalPrice } from "@/redux/features/cart-slice";
 import { useCartModalContext } from "@/app/context/CartSidebarModalContext";
 import Image from "next/image";
-
+import shopData from "../Shop/shopData";
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [navigationOpen, setNavigationOpen] = useState(false);
   const [stickyMenu, setStickyMenu] = useState(false);
   const { openCartModal } = useCartModalContext();
+  const [shop, setShop] = useState(shopData);
 
   const product = useAppSelector((state) => state.cartReducer.items);
   const totalPrice = useSelector(selectTotalPrice);
 
+
+
+  
   const handleOpenCartModal = () => {
     openCartModal();
   };
@@ -64,7 +68,7 @@ const Header = () => {
           <div className="xl:w-auto flex-col sm:flex-row w-full flex sm:justify-between sm:items-center gap-5 sm:gap-10">
             <Link className="flex-shrink-0" href="/">
               <Image
-                src="/images/logo/logo.svg"
+                src="/images/logo/mobilex_logo_RGB.png"
                 alt="Logo"
                 width={219}
                 height={36}
@@ -304,11 +308,13 @@ const Header = () => {
                 <ul className="flex xl:items-center flex-col xl:flex-row gap-5 xl:gap-6">
                   {menuData.map((menuItem, i) =>
                     menuItem.submenu ? (
-                      <Dropdown
-                        key={i}
-                        menuItem={menuItem}
-                        stickyMenu={stickyMenu}
-                      />
+                      <div>
+                        <Dropdown
+                          key={i}
+                          menuItem={menuItem}
+                          stickyMenu={stickyMenu}
+                        />
+                      </div>
                     ) : (
                       <li
                         key={i}
@@ -323,7 +329,7 @@ const Header = () => {
                           {menuItem.title}
                         </Link>
                       </li>
-                    )
+                    ),
                   )}
                 </ul>
               </nav>

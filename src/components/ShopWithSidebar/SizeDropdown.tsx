@@ -1,7 +1,17 @@
 "use client";
 import React, { useState } from "react";
 
-const SizeDropdown = () => {
+type SizeDropdownProps = {
+  sizes: string[];
+  selectedSize: string | null;
+  onChange: (size: string) => void;
+};
+
+const SizeDropdown = ({
+  sizes,
+  selectedSize,
+  onChange,
+}: SizeDropdownProps) => {
   const [toggleDropdown, setToggleDropdown] = useState(true);
   return (
     <div className="bg-white shadow-1 rounded-lg">
@@ -43,53 +53,29 @@ const SizeDropdown = () => {
           toggleDropdown ? "flex" : "hidden"
         }`}
       >
-        <label
-          htmlFor="sizeM"
-          className="cursor-pointer select-none flex items-center rounded-md bg-blue text-white hover:bg-blue hover:text-white"
-        >
-          <div className="relative">
-            <input type="radio" name="size" id="sizeM" className="sr-only" />
-            <div className="text-custom-sm py-[5px] px-3.5 rounded-[5px]">
-              M
+        {sizes.map((size) => (
+          <label
+            key={size}
+            htmlFor={`size-${size}`}
+            className={`cursor-pointer select-none flex items-center rounded-md hover:bg-blue hover:text-white ${
+              selectedSize === size ? "bg-blue text-white" : ""
+            }`}
+          >
+            <div className="relative">
+              <input
+                type="radio"
+                name="size"
+                id={`size-${size}`}
+                className="sr-only"
+                checked={selectedSize === size}
+                onChange={() => onChange(size)}
+              />
+              <div className="text-custom-sm py-[5px] px-3.5 rounded-[5px]">
+                {size}
+              </div>
             </div>
-          </div>
-        </label>
-
-        <label
-          htmlFor="sizeL"
-          className="cursor-pointer select-none flex items-center rounded-md hover:bg-blue hover:text-white"
-        >
-          <div className="relative">
-            <input type="radio" name="size" id="sizeL" className="sr-only" />
-            <div className="text-custom-sm py-[5px] px-3.5 rounded-[5px]">
-              L
-            </div>
-          </div>
-        </label>
-
-        <label
-          htmlFor="sizeXL"
-          className="cursor-pointer select-none flex items-center rounded-md hover:bg-blue hover:text-white"
-        >
-          <div className="relative">
-            <input type="radio" name="size" id="sizeXL" className="sr-only" />
-            <div className="text-custom-sm py-[5px] px-3.5 rounded-[5px]">
-              XL
-            </div>
-          </div>
-        </label>
-
-        <label
-          htmlFor="sizeXXL"
-          className="cursor-pointer select-none flex items-center rounded-md hover:bg-blue hover:text-white"
-        >
-          <div className="relative">
-            <input type="radio" name="size" id="sizeXXL" className="sr-only" />
-            <div className="text-custom-sm py-[5px] px-3.5 rounded-[5px]">
-              XXL
-            </div>
-          </div>
-        </label>
+          </label>
+        ))}
       </div>
     </div>
   );

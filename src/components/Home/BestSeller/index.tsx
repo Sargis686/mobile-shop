@@ -21,7 +21,7 @@ const BestSeller = () => {
               This Month
             </span>
             <h2 className="font-semibold text-xl xl:text-heading-5 text-dark">
-              Best Sellers
+              Best Sellers 
             </h2>
           </div>
         </div>
@@ -31,6 +31,7 @@ const BestSeller = () => {
           {shopData.slice(1, 7).map((item, key) => (
             <SingleItem item={item} key={key} />
           ))}
+          {/* pix.  pix */}
         </div>
 
         <div className="text-center mt-12.5">
@@ -38,7 +39,7 @@ const BestSeller = () => {
             href="/shop-without-sidebar"
             className="inline-flex font-medium text-custom-sm py-3 px-7 sm:px-12.5 rounded-md border-gray-3 border bg-gray-1 text-dark ease-out duration-200 hover:bg-dark hover:text-white hover:border-transparent"
           >
-            View All
+            View All 
           </Link>
         </div>
       </div>

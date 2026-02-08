@@ -1,11 +1,18 @@
 "use client";
 import React, { useState } from "react";
 
-const ColorsDropdwon = () => {
-  const [toggleDropdown, setToggleDropdown] = useState(true);
-  const [activeColor, setActiveColor] = useState("blue");
+type ColorsDropdownProps = {
+  colors: string[];
+  selectedColor: string | null;
+  onChange: (color: string) => void;
+};
 
-  const colors = ["red", "blue", "orange", "pink", "purple"];
+const ColorsDropdwon = ({
+  colors,
+  selectedColor,
+  onChange,
+}: ColorsDropdownProps) => {
+  const [toggleDropdown, setToggleDropdown] = useState(true);
 
   return (
     <div className="bg-white shadow-1 rounded-lg">
@@ -58,11 +65,12 @@ const ColorsDropdwon = () => {
                 name="color"
                 id={color}
                 className="sr-only"
-                onChange={() => setActiveColor(color)}
+                checked={selectedColor === color}
+                onChange={() => onChange(color)}
               />
               <div
                 className={`flex items-center justify-center w-5.5 h-5.5 rounded-full ${
-                  activeColor === color && "border"
+                  selectedColor === color && "border"
                 }`}
                 style={{ borderColor: `${color}` }}
               >

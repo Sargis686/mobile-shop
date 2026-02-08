@@ -1,14 +1,24 @@
 "use client";
 import React, { useState } from "react";
 
-const GenderItem = ({ category }) => {
-  const [selected, setSelected] = useState(false);
+type Gender = {
+  name: string;
+  products: number;
+};
+
+type GenderItemProps = {
+  gender: Gender;
+  selected: boolean;
+  onToggle: (name: string) => void;
+};
+
+const GenderItem = ({ gender, selected, onToggle }: GenderItemProps) => {
   return (
     <button
       className={`${
         selected && "text-blue"
       } group flex items-center justify-between ease-out duration-200 hover:text-blue `}
-      onClick={() => setSelected(!selected)}
+      onClick={() => onToggle(gender.name)}
     >
       <div className="flex items-center gap-2">
         <div
@@ -34,7 +44,7 @@ const GenderItem = ({ category }) => {
           </svg>
         </div>
 
-        <span>{category.name}</span>
+        <span>{gender.name}</span>
       </div>
 
       <span
@@ -42,13 +52,23 @@ const GenderItem = ({ category }) => {
           selected ? "text-white bg-blue" : "bg-gray-2"
         } inline-flex rounded-[30px] text-custom-xs px-2 ease-out duration-200 group-hover:text-white group-hover:bg-blue`}
       >
-        {category.products}
+        {gender.products}
       </span>
     </button>
   );
 };
 
-const GenderDropdown = ({ genders }) => {
+type GenderDropdownProps = {
+  genders: Gender[];
+  selected: string[];
+  onToggle: (name: string) => void;
+};
+
+const GenderDropdown = ({
+  genders,
+  selected,
+  onToggle,
+}: GenderDropdownProps) => {
   const [toggleDropdown, setToggleDropdown] = useState(true);
 
   return (
@@ -92,7 +112,12 @@ const GenderDropdown = ({ genders }) => {
         }`}
       >
         {genders.map((gender, key) => (
-          <GenderItem key={key} category={gender} />
+          <GenderItem
+            key={key}
+            gender={gender}
+            selected={selected.includes(gender.name)}
+            onToggle={onToggle}
+          />
         ))}
       </div>
     </div>

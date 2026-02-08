@@ -1,11 +1,16 @@
 import { Product } from "@/types/product";
-const shopData: Product[] = [
+
+  export const shopData: Product[] = [
   {
     title: "Havit HV-G69 USB Gamepad",
     reviews: 15,
     price: 59.0,
     discountedPrice: 29.0,
     id: 1,
+    category: "Desktop",
+    gender: "Unisex",
+    sizes: ["M", "L"],
+    colors: ["blue", "red"],
     imgs: {
       thumbnails: [
         "/images/products/product-1-sm-1.png",
@@ -23,6 +28,10 @@ const shopData: Product[] = [
     price: 899.0,
     discountedPrice: 99.0,
     id: 2,
+    category: "Phone",
+    gender: "Women",
+    sizes: ["M", "L", "XL"],
+    colors: ["pink", "purple"],
     imgs: {
       thumbnails: [
         "/images/products/product-2-sm-1.png",
@@ -40,6 +49,10 @@ const shopData: Product[] = [
     price: 59.0,
     discountedPrice: 29.0,
     id: 3,
+    category: "Desktop",
+    gender: "Unisex",
+    sizes: ["L", "XL"],
+    colors: ["blue", "orange"],
     imgs: {
       thumbnails: [
         "/images/products/product-3-sm-1.png",
@@ -57,6 +70,10 @@ const shopData: Product[] = [
     price: 59.0,
     discountedPrice: 29.0,
     id: 4,
+    category: "Laptop",
+    gender: "Men",
+    sizes: ["M", "L", "XL"],
+    colors: ["blue", "purple"],
     imgs: {
       thumbnails: [
         "/images/products/product-4-sm-1.png",
@@ -74,6 +91,10 @@ const shopData: Product[] = [
     price: 99.0,
     discountedPrice: 29.0,
     id: 5,
+    category: "Watch",
+    gender: "Women",
+    sizes: ["M", "L"],
+    colors: ["orange", "pink"],
     imgs: {
       thumbnails: [
         "/images/products/product-5-sm-1.png",
@@ -91,6 +112,10 @@ const shopData: Product[] = [
     price: 59.0,
     discountedPrice: 29.0,
     id: 6,
+    category: "Desktop",
+    gender: "Men",
+    sizes: ["M", "L", "XL"],
+    colors: ["blue", "red"],
     imgs: {
       thumbnails: [
         "/images/products/product-6-sm-1.png",
@@ -108,6 +133,10 @@ const shopData: Product[] = [
     price: 59.0,
     discountedPrice: 29.0,
     id: 7,
+    category: "Laptop",
+    gender: "Unisex",
+    sizes: ["L", "XL", "XXL"],
+    colors: ["blue", "purple"],
     imgs: {
       thumbnails: [
         "/images/products/product-7-sm-1.png",
@@ -125,6 +154,10 @@ const shopData: Product[] = [
     price: 59.0,
     discountedPrice: 29.0,
     id: 8,
+    category: "UPS",
+    gender: "Unisex",
+    sizes: ["M", "L"],
+    colors: ["orange", "red"],
     imgs: {
       thumbnails: [
         "/images/products/product-8-sm-1.png",
