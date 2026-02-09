@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const ShopWithoutSidebarPage = () => {
   return (
     <main>
-      {/* <ShopWithoutSidebar /> */}
+      <ShopWithoutSidebar />
     </main>
   );
 };
