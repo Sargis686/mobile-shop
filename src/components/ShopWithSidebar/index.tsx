@@ -10,16 +10,29 @@ import PriceDropdown from "./PriceDropdown";
 import shopData from "../Shop/shopData";
 import SingleGridItem from "../Shop/SingleGridItem";
 import SingleListItem from "../Shop/SingleListItem";
+import { useProductFilters } from "@/hooks/useProductFilters";
 
 const ShopWithSidebar = () => {
   const [productStyle, setProductStyle] = useState("grid");
   const [productSidebar, setProductSidebar] = useState(false);
   const [stickyMenu, setStickyMenu] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedGenders, setSelectedGenders] = useState<string[]>([]);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const {
+    searchTerm,
+    setSearchTerm,
+    selectedCategories,
+    setSelectedCategories,
+    selectedGenders,
+    setSelectedGenders,
+    selectedSize,
+    setSelectedSize,
+    selectedColor,
+    setSelectedColor,
+    priceBounds,
+    priceRange,
+    setPriceRange,
+    filteredProducts,
+    clearAllFilters,
+  } = useProductFilters(shopData);
 
   const handleStickyMenu = () => {
     if (window.scrollY >= 80) {
@@ -34,20 +47,6 @@ const ShopWithSidebar = () => {
     { label: "Best Selling", value: "1" },
     { label: "Old Products", value: "2" },
   ];
-
-  const priceBounds = useMemo(() => {
-    const prices = shopData.map((item) =>
-      typeof item.discountedPrice === "number" ? item.discountedPrice : item.price
-    );
-    const min = Math.min(...prices);
-    const max = Math.max(...prices);
-    return { min, max };
-  }, []);
-
-  const [priceRange, setPriceRange] = useState({
-    from: priceBounds.min,
-    to: priceBounds.max,
-  });
 
   const categories = useMemo(() => {
     const counts = shopData.reduce<Record<string, number>>((acc, item) => {
@@ -81,51 +80,6 @@ const ShopWithSidebar = () => {
     return Array.from(new Set(allColors));
   }, []);
 
-  const filteredProducts = useMemo(() => {
-    const normalizedSearch = searchTerm.trim().toLowerCase();
-
-    return shopData.filter((item) => {
-      if (normalizedSearch) {
-        const searchable = `${item.title} ${item.category}`.toLowerCase();
-        if (!searchable.includes(normalizedSearch)) {
-          return false;
-        }
-      }
-      if (
-        selectedCategories.length > 0 &&
-        !selectedCategories.includes(item.category)
-      ) {
-        return false;
-      }
-      if (
-        selectedGenders.length > 0 &&
-        !selectedGenders.includes(item.gender)
-      ) {
-        return false;
-      }
-      if (selectedSize && !item.sizes.includes(selectedSize)) {
-        return false;
-      }
-      if (selectedColor && !item.colors.includes(selectedColor)) {
-        return false;
-      }
-      const effectivePrice =
-        typeof item.discountedPrice === "number"
-          ? item.discountedPrice
-          : item.price;
-      return (
-        effectivePrice >= priceRange.from && effectivePrice <= priceRange.to
-      );
-    });
-  }, [
-    selectedCategories,
-    selectedGenders,
-    selectedSize,
-    selectedColor,
-    priceRange,
-    searchTerm,
-  ]);
-
   const toggleSelection = (
     value: string,
     setSelected: React.Dispatch<React.SetStateAction<string[]>>
@@ -135,15 +89,6 @@ const ShopWithSidebar = () => {
         ? current.filter((item) => item !== value)
         : [...current, value]
     );
-  };
-
-  const handleClearAll = () => {
-    setSearchTerm("");
-    setSelectedCategories([]);
-    setSelectedGenders([]);
-    setSelectedSize(null);
-    setSelectedColor(null);
-    setPriceRange({ from: priceBounds.min, to: priceBounds.max });
   };
 
   useEffect(() => {
@@ -220,7 +165,7 @@ const ShopWithSidebar = () => {
                   <div className="bg-white shadow-1 rounded-lg py-4 px-5">
                     <div className="flex items-center justify-between">
                       <p>Filters:</p>
-                      <button className="text-blue" onClick={handleClearAll}>
+                      <button className="text-blue" onClick={clearAllFilters}>
                         Clean All
                       </button>
                     </div>

@@ -5,6 +5,11 @@ type InitialState = {
   value: Product;
 };
 
+//  category: "Desktop",
+//     gender: "Unisex",
+//     sizes: ["L", "XL"],
+//     colors: ["blue", "orange"],
+// category, gender, sizes, colors
 const initialState = {
   value: {
     title: "",
@@ -13,6 +18,11 @@ const initialState = {
     discountedPrice: 0,
     img: "",
     id: 0,
+    category:"",
+     gender: "Unisex",
+
+    sizes:[],
+    colors:[],
     images: [],
     imgs: { thumbnails: [], previews: [] },
   } as Product,

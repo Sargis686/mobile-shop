@@ -7,9 +7,11 @@ import SingleListItem from "../Shop/SingleListItem";
 import CustomSelect from "../ShopWithSidebar/CustomSelect";
 
 import shopData from "../Shop/shopData";
+import { useProductFilters } from "@/hooks/useProductFilters";
 
 const ShopWithoutSidebar = () => {
   const [productStyle, setProductStyle] = useState("grid");
+  const { searchTerm, setSearchTerm, filteredProducts } = useProductFilters(shopData);
 
   const options = [
     { label: "Latest Products", value: "0" },
@@ -33,9 +35,18 @@ const ShopWithoutSidebar = () => {
                   {/* <!-- top bar left --> */}
                   <div className="flex flex-wrap items-center gap-4">
                     <CustomSelect options={options} />
+                    <input
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      placeholder="Search products..."
+                      className="w-[220px] rounded-md border border-gray-3 bg-white px-3 py-2 text-sm text-dark placeholder:text-dark-4 focus:border-blue focus:outline-none"
+                    />
 
                     <p>
-                      Showing <span className="text-dark">9 of 50</span>{" "}
+                      Showing{" "}
+                      <span className="text-dark">
+                        {filteredProducts.length} of {shopData.length}
+                      </span>{" "}
                       Products
                     </p>
                   </div>
@@ -129,7 +140,7 @@ const ShopWithoutSidebar = () => {
                     : "flex flex-col gap-7.5"
                 }`}
               >
-                {shopData.map((item, key) =>
+                {filteredProducts.map((item, key) =>
                   productStyle === "grid" ? (
                     <SingleGridItem item={item} key={key} />
                   ) : (
